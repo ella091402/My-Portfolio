@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ella Audrey - Portfolio Hero</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg-color: #080808;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-pink: #ff2d55;
+            --accent-purple: #8c52ff;
+            --glass-glow: rgba(140, 82, 255, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f5f5f7;
+            --card-bg: rgba(0, 0, 0, 0.02);
+            --card-border: rgba(0, 0, 0, 0.1);
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --accent-pink: #e91e63;
+            --accent-purple: #673ab7;
+            --glass-glow: rgba(103, 58, 183, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(8, 8, 8, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo span {
+            color: var(--accent-pink);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-pink);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-cv {
+            background: transparent;
+            border: 1px solid var(--accent-purple);
+            color: var(--text-primary);
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-cv:hover {
+            background: var(--accent-purple);
+            box-shadow: 0 0 20px rgba(140, 82, 255, 0.4);
+        }
+
+        #theme-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(140, 82, 255, 0.1) 0%, rgba(255, 45, 85, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            width: 100%;
+            padding: 60px 0;
+        }
+
+        /* Left Section - Profile Image */
+        .hero-left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-card {
+            position: relative;
+            width: 280px;
+            height: 380px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(8, 8, 8, 0.4) 100%);
+            z-index: 2;
+        }
+
+        /* Center Section - Main Content */
+        .hero-center {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .hero-title {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .hero-title h4 {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .hero-title h1 {
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .hero-title h1 span {
+            color: var(--accent-pink);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .title-pills {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0;
+        }
+
+        .title-pills span {
+            padding: 8px 16px;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .title-pills span:hover {
+            border-color: var(--accent-pink);
+            color: var(--accent-pink);
+        }
+
+        .connect-section {
+            margin-top: 10px;
+        }
+
+        .connect-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-purple), var(--accent-pink));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent-pink);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(255, 45, 85, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-purple);
+            color: var(--text-primary);
+            padding: 13px 33px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-purple);
+            box-shadow: 0 0 20px rgba(140, 82, 255, 0.4);
+        }
+
+        .hero-socials {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 18px;
+        }
+
+        .social-icon:hover {
+            background: var(--accent-pink);
+            border-color: var(--accent-pink);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Right Section - Stats */
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .stat-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .stat-item:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .stat-item:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .stat-item:hover {
+            border-color: var(--accent-pink);
+            transform: translateY(-5px);
+        }
+
+        .stat-item h4 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-item h4 span {
+            color: var(--accent-pink);
+        }
+
+        .stat-item p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hero-right {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                justify-content: center;
+            }
+
+            .stat-item {
+                min-width: 150px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title h1 {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .profile-card {
+                width: 240px;
+                height: 320px;
+            }
+
+            .title-pills {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .title-pills span {
+                justify-content: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-right {
+                flex-direction: row;
+                gap: 15px;
+                order: -1;
+            }
+
+            .stat-item {
+                min-width: 100px;
+                padding: 15px;
+            }
+
+            .stat-item h4 {
+                font-size: 24px;
+            }
+
+            .stat-item p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="hero-page.html" class="logo">EA <span>Ella Audrey M. Nones</span></a>
+            <ul class="nav-links">
+                <li><a href="hero-page.html" class="active">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#achievements">Achievements</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="assets/Nones_Ella_Audrey-CV.pdf" class="btn-cv" download>
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+                <button id="theme-toggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-wrapper">
+        <div class="hero-background"></div>
+        <div class="container hero-container">
+            <!-- Left: Profile Image -->
+            <div class="hero-left">
+                <div class="profile-card">
+                    <img src="assets/images/ella.png" alt="Ella Audrey Nones">
+                    <div class="profile-overlay"></div>
+                </div>
+            </div>
+
+            <!-- Center: Main Content -->
+            <div class="hero-center">
+                <div class="hero-title">
+                    <h4>hi, I'm <i class="fas fa-heart" style="color: var(--accent-pink);"></i></h4>
+                    <h1>ELLA AUDREY<br><span>NONES</span></h1>
+                </div>
+
+                <div class="hero-divider"></div>
+
+                <div class="title-pills">
+                    <span><i class="fas fa-laptop-code"></i> IT Student</span>
+                    <span><i class="fas fa-chart-column"></i> Business Analytics</span>
+                    <span><i class="fas fa-volleyball"></i> Student-Athlete</span>
+                </div>
+
+                <p class="hero-subtitle">
+                    Driven by discipline on the court and curiosity in data. I turn insights into <em>impact</em> and challenges into <em>opportunities</em>.
+                </p>
+
+                <div class="hero-cta">
+                    <a href="index.html#projects" class="btn-primary">
+                        View Projects <i class="fas fa-chevron-right"></i>
+                    </a>
+                    <a href="index.html#contact" class="btn-secondary">
+                        Contact Me <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+
+                <div class="connect-section">
+                    <p class="connect-label">Let's Connect</p>
+                    <div class="hero-socials">
+                        <a href="https://linkedin.com/in/ellanones" class="social-icon" target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/ella091402" class="social-icon" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:ella.nones@email.com" class="social-icon" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://instagram.com" class="social-icon" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Stats -->
+            <div class="hero-right">
+                <div class="stat-item">
+                    <h4><span>88%</span></h4>
+                    <p>Power</p>
+                </div>
+                <div class="stat-item">
+                    <h4><span>92%</span></h4>
+                    <p>Agility</p>
+                </div>
+                <div class="stat-item">
+                    <h4><span>95%</span></h4>
+                    <p>Serve Accuracy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const root = document.documentElement;
+            const icon = themeToggle.querySelector('i');
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            root.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = root.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                root.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+
+            function updateThemeIcon(theme) {
+                const icon = themeToggle.querySelector('i');
+                if (theme === 'dark') {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                } else {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
