@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Business Analytics & Student-Athlete</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">EA <span>Ella Audrey M. Nones</span></a>
+            <ul class="nav-links">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="assets/CV.pdf" class="btn-cv" download>
+                    <i class="fa-solid fa-download"></i> Download CV
+                </a>
+                <button id="theme-toggle" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h4>hi, I'm <span class="cursive">Ella Audrey</span></h4>
+                <h1>ELLA <span class="highlight">AUDREY</span></h1>
+                <div class="title-pill">
+                    <span>IT Student</span>
+                    <span>Business Analytics</span>
+                    <span>Student-Athlete</span>
+                </div>
+                <p class="hero-desc">
+                    I combine the discipline of sports with the power of technology and data to solve real-world problems and create meaningful impact.
+                </p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn-primary">View My Work <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn-secondary"><i class="fa-solid fa-envelope"></i> Get In Touch</a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://linkedin.com/in/ellanones"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/ella091402"><i class="fa-brands fa-github"></i></a>
+                    <a href="mailto:ella.nones@email.com"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="hero-main-img">
+                <img src="assets/images/athlete.png" alt="Athlete">
+                <div class="img-overlay-text">
+                    <span>Focus</span>
+                    <span>Perform</span>
+                    <span>Impact</span>
+                </div>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="stat-info">
+                        <span>Data Driven</span>
+                        <h5>Performance</h5>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-volleyball"></i></div>
+                    <div class="stat-info">
+                        <span>Real World</span>
+                        <h5>Impact</h5>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info" style="text-align: right;">
+                        <p style="font-size: 14px; color: var(--text-secondary);">Always improving, on and off the court. <i class="fa-solid fa-heart" style="color: var(--accent-pink);"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-visual">
+                    <img src="assets/images/athlete.png" alt="Silhouette" style="filter: brightness(0) invert(1) opacity(0.1);">
+                </div>
+                <div class="about-text">
+                    <p>
+                        I'm Ella Audrey, an IT student with a passion for Business Analytics, data-driven decision making, and building intelligent solutions. As a student-athlete, I value discipline, teamwork, and continuous improvement — on and off the court.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature-box">
+                            <i class="fa-solid fa-brain"></i>
+                            <h4>Disciplined Mindset</h4>
+                            <span>Performance</span>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fa-solid fa-users"></i>
+                            <h4>Team Player</h4>
+                            <span>Collaboration</span>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fa-solid fa-star"></i>
+                            <h4>Always Improving</h4>
+                            <span>Growth</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-col">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info"><span>Python</span><span>90%</span></div>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info"><span>SQL</span><span>85%</span></div>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info"><span>Tableau / Power BI</span><span>80%</span></div>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info"><span>Excel</span><span>95%</span></div>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info"><span>HTML / CSS / JS</span><span>85%</span></div>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-col">
+                    <h3>Tools</h3>
+                    <div class="tool-list">
+                        <div class="tool-item">
+                            <i class="fa-solid fa-code" style="color: #007acc;"></i>
+                            <span>VS Code</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fa-brands fa-github"></i>
+                            <span>Git & GitHub</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fa-brands fa-wordpress" style="color: #21759b;"></i>
+                            <span>WordPress</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fa-brands fa-figma" style="color: #f24e1e;"></i>
+                            <span>Figma</span>
+                        </div>
+                        <div class="tool-item">
+                            <i class="fa-brands fa-google" style="color: #4285f4;"></i>
+                            <span>Google Workspace</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-col">
+                    <h3>Soft Skills</h3>
+                    <div class="soft-skills">
+                        <div class="soft-item"><i class="fa-solid fa-check"></i> <span>Teamwork</span></div>
+                        <div class="soft-item"><i class="fa-solid fa-check"></i> <span>Leadership</span></div>
+                        <div class="soft-item"><i class="fa-solid fa-check"></i> <span>Time Management</span></div>
+                        <div class="soft-item"><i class="fa-solid fa-check"></i> <span>Problem Solving</span></div>
+                        <div class="soft-item"><i class="fa-solid fa-check"></i> <span>Adaptability</span></div>
+                        <div class="soft-item"><i class="fa-solid fa-check"></i> <span>Communication</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Featured Projects</h2>
+                <a href="#" style="color: var(--accent-pink); text-decoration: none; font-size: 14px;">View All Projects <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-thumb">
+                        <img src="https://images.unsplash.com/photo-1551288049-bb848a55a178?auto=format&fit=crop&q=80&w=600" alt="Inventory">
+                    </div>
+                    <div class="project-info">
+                        <h3>Inventory & Ordering Management</h3>
+                        <p>A system that predicts demand, manages inventory levels, and automates reordering.</p>
+                        <div class="tech-tags">
+                            <span>Python</span><span>Prophet</span><span>SQL</span><span>Streamlit</span>
+                        </div>
+                        <a href="#" class="btn-view">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-thumb">
+                        <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80&w=600" alt="Chatbot">
+                    </div>
+                    <div class="project-info">
+                        <h3>AI Chatbot for Forecasting</h3>
+                        <p>An intelligent chatbot that explains forecasting results and insights in natural language.</p>
+                        <div class="tech-tags">
+                            <span>Python</span><span>NLP</span><span>OpenAI API</span>
+                        </div>
+                        <a href="#" class="btn-view">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-thumb">
+                        <img src="https://images.unsplash.com/photo-1592656670411-b91a9dcc63d8?auto=format&fit=crop&q=80&w=600" alt="Volleyball App">
+                    </div>
+                    <div class="project-info">
+                        <h3>SpikeGuard - Performance App</h3>
+                        <p>A mobile app that helps athletes track training, prevent injuries, and improve performance.</p>
+                        <div class="tech-tags">
+                            <span>React Native</span><span>Firebase</span><span>Charts</span>
+                        </div>
+                        <a href="#" class="btn-view">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>Experience</h2>
+            </div>
+            <div class="exp-card">
+                <div class="exp-main">
+                    <h3>OJT – IT Support & WordPress Developer</h3>
+                    <span class="company">Company Name | Jan 2026 – Apr 2026</span>
+                    <ul class="exp-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Provided technical support including troubleshooting hardware and software.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Assisted in maintaining and configuring computers and office systems.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Developed and customized websites using WordPress.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Edited layouts, plugins, and UI components to improve user experience.</li>
+                    </ul>
+                </div>
+                <div class="exp-tech">
+                    <h4>Technologies Used</h4>
+                    <div class="tech-list-simple">
+                        <div class="tech-item-simple"><i class="fa-brands fa-wordpress"></i> WordPress</div>
+                        <div class="tech-item-simple"><i class="fa-brands fa-html5"></i> HTML / CSS</div>
+                        <div class="tech-item-simple"><i class="fa-brands fa-js"></i> Basic JavaScript</div>
+                        <div class="tech-item-simple"><i class="fa-brands fa-google"></i> Google Workspace</div>
+                    </div>
+                </div>
+                <div class="exp-perf">
+                    <h4>Performance</h4>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info"><span>Technical Support</span><span>90%</span></div>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info"><span>Web Development</span><span>85%</span></div>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section achievements">
+        <div class="container">
+            <div class="section-header">
+                <h2>Achievements</h2>
+            </div>
+            <div class="achieve-row">
+                <div class="achieve-card">
+                    <i class="fa-solid fa-volleyball"></i>
+                    <h4>Student-Athlete</h4>
+                    <p>Competing at a high level in volleyball while maintaining academic excellence.</p>
+                </div>
+                <div class="achieve-card">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h4>Academic Excellence</h4>
+                    <p>Consistent academic performance and Dean's List awardee.</p>
+                </div>
+                <div class="achieve-card">
+                    <i class="fa-solid fa-crown"></i>
+                    <h4>Leadership</h4>
+                    <p>Team leader in multiple school projects and athletic competitions.</p>
+                </div>
+                <div class="achieve-card">
+                    <i class="fa-solid fa-trophy"></i>
+                    <h4>Hackathon Participation</h4>
+                    <p>Built and presented innovative solutions in local tech competitions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Let's Connect <i class="fa-solid fa-heart" style="color: var(--accent-pink);"></i></h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 30px;">I'm always open to discussing new projects, opportunities, or collaborations.</p>
+                    <div class="contact-list">
+                        <a href="mailto:ella.nones@email.com" class="contact-item"><i class="fa-solid fa-envelope"></i> ella.nones@email.com</a>
+                        <a href="#" class="contact-item"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/ellanones</a>
+                        <a href="#" class="contact-item"><i class="fa-brands fa-github"></i> github.com/ella091402</a>
+                        <span class="contact-item"><i class="fa-solid fa-location-dot"></i> Philippines</span>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Your Name" required>
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <input type="text" placeholder="Subject" required>
+                        <textarea rows="5" placeholder="Message" required></textarea>
+                        <button type="submit" class="btn-send">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+
+                <div class="contact-quote">
+                    <div class="quote-box">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <blockquote>Discipline in sports. Excellence in tech. Impact in life.</blockquote>
+                        <i class="fa-solid fa-volleyball" style="opacity: 0.1; font-size: 100px; position: absolute; bottom: 0; right: 0;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <a href="#" class="logo">EA <span>Ella Audrey M. Nones</span></a>
+            <p class="footer-motto">Discipline in sports. Excellence in tech. Impact in life.</p>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <div class="hero-socials" style="margin-bottom: 0;">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+                <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
