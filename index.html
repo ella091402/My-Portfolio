@@ -18,6 +18,8 @@
             --accent-pink: #ff2d55;
             --accent-purple: #8c52ff;
             --glass-glow: rgba(140, 82, 255, 0.1);
+            --nav-bg: rgba(8, 8, 8, 0.8);
+            --nav-bg-scroll: rgba(8, 8, 8, 0.95);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -30,6 +32,8 @@
             --accent-pink: #e91e63;
             --accent-purple: #673ab7;
             --glass-glow: rgba(103, 58, 183, 0.05);
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --nav-bg-scroll: rgba(255, 255, 255, 0.95);
         }
 
         * {
@@ -81,9 +85,15 @@
             width: 100%;
             z-index: 1000;
             padding: 20px 0;
-            background: rgba(8, 8, 8, 0.8);
+            background: var(--nav-bg);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--card-border);
+            transition: padding 0.3s ease, background 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            background: var(--nav-bg-scroll);
         }
 
         .nav-content {
@@ -156,6 +166,7 @@
         .btn-cv:hover {
             background: var(--accent-purple);
             box-shadow: 0 0 20px rgba(140, 82, 255, 0.4);
+            color: #ffffff;
         }
 
         #theme-toggle {
@@ -361,9 +372,9 @@
         }
 
         .focus-card {
-            background: rgba(10, 10, 10, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-top: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 20px 25px;
             backdrop-filter: blur(20px);
@@ -475,9 +486,9 @@
         }
 
         .player-stats-card {
-            background: rgba(10, 10, 10, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-top: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 22px 25px;
             backdrop-filter: blur(20px);
@@ -900,43 +911,470 @@
         }
 
         /* Achievements Section */
-        .achieve-row {
+        .achieve-filters {
             display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-pink);
+            color: var(--accent-pink);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-pink);
+            border-color: var(--accent-pink);
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 45, 85, 0.3);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .achieve-card {
-            min-width: 250px;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 30px;
-            border-radius: 12px;
+            border-radius: 16px;
+            padding: 32px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .achieve-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .achieve-card:hover::before {
+            transform: scaleX(1);
         }
 
         .achieve-card:hover {
+            transform: translateY(-8px);
             border-color: var(--accent-pink);
+            box-shadow: 0 12px 30px rgba(255, 45, 85, 0.15);
         }
 
-        .achieve-card i {
-            font-size: 40px;
-            color: var(--accent-pink);
+        .achieve-badge {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(255, 45, 85, 0.2), rgba(140, 82, 255, 0.2));
+            border: 2px solid var(--accent-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 20px;
+            font-size: 32px;
+            color: var(--accent-pink);
+            position: relative;
+            animation: rotateBadge 8s linear infinite;
+        }
+
+        .achieve-badge.certificate {
+            border-color: var(--accent-purple);
+            background: linear-gradient(135deg, rgba(140, 82, 255, 0.2), rgba(255, 45, 85, 0.2));
+        }
+
+        .achieve-badge.certificate {
+            color: var(--accent-purple);
+        }
+
+        .achieve-badge.module {
+            border-color: rgba(255, 45, 85, 0.5);
+            background: linear-gradient(135deg, rgba(255, 45, 85, 0.15), rgba(140, 82, 255, 0.15));
+            color: var(--accent-pink);
+        }
+
+        @keyframes rotateBadge {
+            from {
+                transform: rotateZ(0deg);
+            }
+            to {
+                transform: rotateZ(360deg);
+            }
+        }
+
+        .achieve-card:hover .achieve-badge {
+            animation-duration: 2s;
         }
 
         .achieve-card h4 {
-            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            line-height: 1.4;
         }
 
-        .achieve-card p {
+        .achieve-type {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-pink);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .achieve-issuer {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .achieve-date {
             font-size: 12px;
             color: var(--text-secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .achieve-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .btn-achieve-view {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: var(--transition);
+            font-family: inherit;
+            margin-top: auto;
+        }
+
+        .btn-achieve-view:hover {
+            background: var(--accent-pink);
+            border-color: var(--accent-pink);
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 45, 85, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--bg-color);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-pink);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            text-align: center;
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            color: var(--accent-pink);
+            margin-bottom: 20px;
+            animation: bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #modalTitle {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .modal-type {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-pink);
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .modal-details {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn-modal-primary {
+            background: var(--accent-pink);
+            border: none;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-modal-primary:hover {
+            background: var(--accent-purple);
+            box-shadow: 0 0 20px rgba(140, 82, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Certificate Viewer Styles */
+        .modal-content.certificate-viewer {
+            max-width: 700px;
+            padding: 30px;
+        }
+
+        .cert-viewer-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+            max-height: 600px;
+        }
+
+        .cert-viewer-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .cert-viewer-container iframe {
+            border-radius: 8px;
+        }
+
+        #certTitle {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achieve-filters {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 10px 16px;
+                font-size: 11px;
+            }
+
+            .modal-content {
+                padding: 30px 24px;
+                border-radius: 16px;
+            }
+
+            #modalTitle {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .achieve-filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 8px;
+            }
+
+            .filter-btn {
+                white-space: nowrap;
+                padding: 8px 14px;
+            }
+
+            .achieve-card {
+                padding: 24px 16px;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 24px 20px;
+            }
+
+            .modal-details {
+                padding: 16px;
+            }
         }
 
         /* Contact Section */
@@ -1506,27 +1944,252 @@
         </div>
     </section>
 
-    <!-- Achievements Section -->
+    <!-- Achievements & Certifications Section -->
     <section id="achievements" class="section achievements">
         <div class="container">
             <div class="section-header">
-                <h2>Achievements</h2>
+                <h2>Achievements & Certifications</h2>
             </div>
-            <div class="achieve-row">
-                <div class="achieve-card">
-                    <i class="fa-solid fa-volleyball"></i>
-                    <h4>Student-Athlete</h4>
-                    <p>Competing at a high level in volleyball while maintaining academic excellence.</p>
+            
+            <!-- Filter Buttons -->
+            <div class="achieve-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fa-solid fa-th"></i> All
+                </button>
+                <button class="filter-btn" data-filter="certificate">
+                    <i class="fa-solid fa-award"></i> Certificates
+                </button>
+                <button class="filter-btn" data-filter="module">
+                    <i class="fa-solid fa-chart-line"></i> Modules
+                </button>
+                <button class="filter-btn" data-filter="badge">
+                    <i class="fa-solid fa-shield"></i> Badges
+                </button>
+            </div>
+
+            <!-- Achievements Grid -->
+            <div class="achievements-grid">
+                <!-- Badge: Data Analytics Essentials -->
+                <div class="achieve-card" data-category="badge" data-date="2026-06-14">
+                    <div class="achieve-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4>Data Analytics Essentials</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 14, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
-                <div class="achieve-card">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <h4>Academic Excellence</h4>
-                    <p>Consistent academic performance and Dean's List awardee.</p>
+
+                <!-- Certificate: Data Analytics Essentials -->
+                <div class="achieve-card" data-category="certificate" data-date="2026-06-14" data-certificate="assets/Certificates-Achievements/DAE-CERT.pdf" data-cert-type="pdf">
+                    <div class="achieve-badge certificate">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h4>Data Analytics Essentials</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 14, 2026</p>
+                    <button class="btn-achieve-view" onclick="showCertificateModal(event)">
+                        View Certificate <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
-                <div class="achieve-card">
-                    <i class="fa-solid fa-crown"></i>
-                    <h4>Leadership</h4>
-                    <p>Team leader in multiple school projects and athletic competitions.</p>
+
+                <!-- Achievement Module: Introduction to Tableau -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-14">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h4>Introduction to Tableau</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 14, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Achievement Module: Ethical use of Data -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-14">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-shield-exclamation"></i>
+                    </div>
+                    <h4>Ethical use of Data</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 14, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Achievement Module: Dashboarding Basics -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-14">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-rectangle-list"></i>
+                    </div>
+                    <h4>Dashboarding Basics</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 14, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Achievement Module: Combining Data -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-11">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-arrows-split-up-and-left"></i>
+                    </div>
+                    <h4>Combining Data</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 11, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Achievement Module: SQL Basics -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-09">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h4>SQL Basics</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 09, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Achievement Module: Descriptive Statistics -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-05">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-chart-bar"></i>
+                    </div>
+                    <h4>Descriptive Statistics</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 05, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Achievement Module: Transforming Data with Excel -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-05">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-table"></i>
+                    </div>
+                    <h4>Transforming Data with Excel</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 05, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Achievement Module: Data Acquisition and Preparation -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-04">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-arrow-down-to-bracket"></i>
+                    </div>
+                    <h4>Data Acquisition and Preparation</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 04, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Achievement Module: Data Gathering and Visualization -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-03">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h4>Data Gathering and Visualization</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 03, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Achievement Module: Start a Project Portfolio -->
+                <div class="achieve-card" data-category="module" data-date="2026-06-03">
+                    <div class="achieve-badge module">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h4>Start a Project Portfolio</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 03, 2026</p>
+                    <button class="btn-achieve-view" onclick="showAchievementModal(event)">
+                        View Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Certificate: CCNAv7 -->
+                <div class="achieve-card" data-category="certificate" data-date="2026-06-17" data-certificate="assets/Certificates-Achievements/CCNA-CERT.pdf" data-cert-type="pdf">
+                    <div class="achieve-badge certificate">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h4>CCNAv7</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Jun 17, 2026</p>
+                    <button class="btn-achieve-view" onclick="showCertificateModal(event)">
+                        View Certificate <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Certificate: DATABIZ 2025 Conference -->
+                <div class="achieve-card" data-category="certificate" data-date="2025-10-25" data-certificate="assets/Certificates-Achievements/DATABIZ- CERT.png" data-cert-type="image">
+                    <div class="achieve-badge certificate">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h4>DATABIZ 2025 Conference</h4>
+                    <p class="achieve-date"><i class="fa-solid fa-calendar"></i> Oct 25, 2025</p>
+                    <button class="btn-achieve-view" onclick="showCertificateModal(event)">
+                        View Certificate <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal for Certificate Viewing -->
+            <div id="certificateModal" class="modal">
+                <div class="modal-content certificate-viewer">
+                    <button class="modal-close" onclick="closeCertificateModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="modal-body">
+                        <h3 id="certTitle" style="margin-bottom: 20px;">Certificate</h3>
+                        <div id="certViewerContainer" class="cert-viewer-container">
+                            <!-- Certificate will be loaded here -->
+                        </div>
+                        <div class="modal-actions" style="margin-top: 20px;">
+                            <a id="certDownloadBtn" href="#" target="_blank" class="btn-modal-primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+                                <i class="fa-solid fa-download"></i> Download Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Full Achievement Details -->
+            <div id="achievementModal" class="modal">
+                <div class="modal-content">
+                    <button class="modal-close" onclick="closeAchievementModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="modal-body">
+                        <div class="modal-icon">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <h3 id="modalTitle">Achievement Title</h3>
+                        <p id="modalType" class="modal-type">Certificate</p>
+                        <div class="modal-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Academy:</span>
+                                <span id="modalIssuer" class="detail-value">DICT-ITU DTC Initiative</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Issued On:</span>
+                                <span id="modalDate" class="detail-value">Date</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Category:</span>
+                                <span id="modalCategory" class="detail-value">Category</span>
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="btn-modal-primary" onclick="closeAchievementModal()">
+                                <i class="fa-solid fa-check"></i> Acknowledge
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1650,11 +2313,9 @@
                 // Navbar blur on scroll
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
-                    navbar.style.padding = '10px 0';
-                    navbar.style.background = 'rgba(8, 8, 8, 0.95)';
+                    navbar.classList.add('scrolled');
                 } else {
-                    navbar.style.padding = '20px 0';
-                    navbar.style.background = 'rgba(8, 8, 8, 0.8)';
+                    navbar.classList.remove('scrolled');
                 }
             });
 
@@ -1695,6 +2356,56 @@
                 });
             });
 
+            // Achievement Filter Functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const achieveCards = document.querySelectorAll('.achieve-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filterValue = button.getAttribute('data-filter');
+
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Filter cards
+                    achieveCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        
+                        if (filterValue === 'all' || cardCategory === filterValue) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.animation = 'slideUp 0.6s ease';
+                            }, 0);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Modal Functionality
+            const modal = document.getElementById('achievementModal');
+            const certModal = document.getElementById('certificateModal');
+            
+            // Close modals on background click
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeAchievementModal();
+                }
+                if (event.target === certModal) {
+                    closeCertificateModal();
+                }
+            });
+
+            // Close modals on Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    closeAchievementModal();
+                    closeCertificateModal();
+                }
+            });
+
             // Form Submission - Formspree Integration
             const contactForm = document.querySelector('.contact-form');
             if (contactForm) {
@@ -1708,6 +2419,99 @@
             }
         });
 
+        // Global functions for modals
+        function showAchievementModal(event) {
+            event.preventDefault();
+            const modal = document.getElementById('achievementModal');
+            const card = event.target.closest('.achieve-card');
+            
+            // Extract data from card
+            const title = card.querySelector('h4').textContent;
+            const date = card.querySelector('.achieve-date').textContent.replace(/[^A-Za-z0-9,\s]/g, '').trim();
+            const category = card.getAttribute('data-category');
+
+            // Map category to label
+            const categoryLabel = {
+                'badge': 'Badge',
+                'certificate': 'Certificate',
+                'module': 'Module Achievement',
+                'course': 'Course'
+            }[category] || 'Achievement';
+
+            // Populate modal
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalType').textContent = categoryLabel;
+            document.getElementById('modalDate').textContent = date;
+            document.getElementById('modalCategory').textContent = categoryLabel;
+
+            // Show modal
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showCertificateModal(event) {
+            event.preventDefault();
+            const modal = document.getElementById('certificateModal');
+            const card = event.target.closest('.achieve-card');
+            
+            const certPath = card.getAttribute('data-certificate');
+            const certType = card.getAttribute('data-cert-type');
+            const title = card.querySelector('h4').textContent;
+            
+            if (!certPath) {
+                alert('Certificate file not available');
+                return;
+            }
+
+            // Set title
+            document.getElementById('certTitle').textContent = title;
+            
+            // Set download button
+            document.getElementById('certDownloadBtn').href = certPath;
+            document.getElementById('certDownloadBtn').download = title.replace(/\\s+/g, '_') + (certType === 'pdf' ? '.pdf' : '.png');
+
+            // Load certificate in viewer
+            const container = document.getElementById('certViewerContainer');
+            container.innerHTML = '';
+
+            if (certType === 'pdf') {
+                // For PDF, create an embed or iframe
+                const iframe = document.createElement('iframe');
+                iframe.src = certPath;
+                iframe.style.width = '100%';
+                iframe.style.height = '500px';
+                iframe.style.border = 'none';
+                iframe.style.borderRadius = '8px';
+                container.appendChild(iframe);
+            } else if (certType === 'image') {
+                // For images, create an img tag
+                const img = document.createElement('img');
+                img.src = certPath;
+                img.style.maxWidth = '100%';
+                img.style.height = 'auto';
+                img.style.borderRadius = '8px';
+                img.style.boxShadow = '0 8px 32px rgba(255, 45, 85, 0.2)';
+                container.appendChild(img);
+            }
+
+            // Show modal
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAchievementModal() {
+            const modal = document.getElementById('achievementModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeCertificateModal() {
+            const modal = document.getElementById('certificateModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            // Clear viewer
+            document.getElementById('certViewerContainer').innerHTML = '';
+        }
     </script>
 </body>
 
